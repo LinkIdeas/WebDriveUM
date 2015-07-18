@@ -27,7 +27,7 @@ namespace DropBoxAPI
 
 
         public DropBoxManagement()
-        { 
+        {
             Option = new Options();
             Option.ClientId = "app key";
             Option.ClientSecret = "app secret";
