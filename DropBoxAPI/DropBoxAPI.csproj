@@ -68,12 +68,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DeveloperKeyInfo\DeveloperKeyInfo.csproj">
+      <Project>{1ab445e0-efe2-4b6e-8254-d07f9da1bd6b}</Project>
+      <Name>DeveloperKeyInfo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DriveAPI.Core\DriveAPI.Core.csproj">
       <Project>{c013e18b-2b0b-47cc-b7e2-6df683b75578}</Project>
       <Name>DriveAPI.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\DeveloperKeyInfo\DeveloperKeyInfo.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

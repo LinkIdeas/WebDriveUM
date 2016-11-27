@@ -9,13 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropBoxAPI", "DropBoxAPI\Dr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveAPI.Core", "DriveAPI.Core\DriveAPI.Core.csproj", "{C013E18B-2B0B-47CC-B7E2-6DF683B75578}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DeveloperKeyInfo", "DeveloperKeyInfo\DeveloperKeyInfo.shproj", "{8AF22E0E-1B4A-4B51-9826-5F1A68CF15A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperKeyInfo", "DeveloperKeyInfo\DeveloperKeyInfo.csproj", "{1AB445E0-EFE2-4B6E-8254-D07F9DA1BD6B}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		DeveloperKeyInfo\DeveloperKeyInfo.projitems*{80173025-2e2f-46b5-a7a3-02e43476bafc}*SharedItemsImports = 4
-		DeveloperKeyInfo\DeveloperKeyInfo.projitems*{8af22e0e-1b4a-4b51-9826-5f1a68cf15a9}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{C013E18B-2B0B-47CC-B7E2-6DF683B75578}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C013E18B-2B0B-47CC-B7E2-6DF683B75578}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C013E18B-2B0B-47CC-B7E2-6DF683B75578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AB445E0-EFE2-4B6E-8254-D07F9DA1BD6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AB445E0-EFE2-4B6E-8254-D07F9DA1BD6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AB445E0-EFE2-4B6E-8254-D07F9DA1BD6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AB445E0-EFE2-4B6E-8254-D07F9DA1BD6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

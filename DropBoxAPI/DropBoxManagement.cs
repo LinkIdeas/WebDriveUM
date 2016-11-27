@@ -1,4 +1,5 @@
-﻿using DriveAPI.Core;
+﻿using DeveloperKeyInfo;
+using DriveAPI.Core;
 using DropboxRestAPI;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,8 @@ namespace DropBoxAPI
         public DropBoxManagement()
         {
             Option = new Options();
-            Option.ClientId = "app key";
-            Option.ClientSecret = "app secret";
+            Option.ClientId = Key.Dropbox_AppKey;
+            Option.ClientSecret = Key.Dropbox_AppSecret;
             Option.RedirectUri = "https://www.canself.com";
 
             TmpClient = new Client(Option);

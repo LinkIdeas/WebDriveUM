@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeveloperKeyInfo;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,5 +13,10 @@ namespace WebDriveAPI
     /// </summary>
     public partial class App : Application
     {
+
+        public App()
+        {
+            LocalKey.Init();
+        }
     }
 }

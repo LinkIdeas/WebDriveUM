@@ -161,6 +161,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DeveloperKeyInfo\DeveloperKeyInfo.csproj">
+      <Project>{1ab445e0-efe2-4b6e-8254-d07f9da1bd6b}</Project>
+      <Name>DeveloperKeyInfo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DriveAPI.Core\DriveAPI.Core.csproj">
       <Project>{c013e18b-2b0b-47cc-b7e2-6df683b75578}</Project>
       <Name>DriveAPI.Core</Name>

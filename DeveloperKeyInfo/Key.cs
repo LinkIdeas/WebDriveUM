@@ -5,8 +5,14 @@ using System.Text;
 namespace DeveloperKeyInfo
 {
 
-    class Key
+    public abstract class Key
     {
-        public static string test = Local.test;
+        public static string ExampleKey { get; protected set; }
+
+        #region Dropbox
+        public static string Dropbox_AppKey { get; protected set; }
+        public static String Dropbox_AppSecret { get; protected set; }
+        #endregion
+
     }
 }
