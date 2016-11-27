@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDriveAPI", "WebDriveAPI\WebDriveAPI.csproj", "{F0B9F938-43AD-49BC-AAA2-9769BDA8990F}"
 EndProject
@@ -9,7 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropBoxAPI", "DropBoxAPI\Dr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveAPI.Core", "DriveAPI.Core\DriveAPI.Core.csproj", "{C013E18B-2B0B-47CC-B7E2-6DF683B75578}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DeveloperKeyInfo", "DeveloperKeyInfo\DeveloperKeyInfo.shproj", "{8AF22E0E-1B4A-4B51-9826-5F1A68CF15A9}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		DeveloperKeyInfo\DeveloperKeyInfo.projitems*{80173025-2e2f-46b5-a7a3-02e43476bafc}*SharedItemsImports = 4
+		DeveloperKeyInfo\DeveloperKeyInfo.projitems*{8af22e0e-1b4a-4b51-9826-5f1a68cf15a9}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
