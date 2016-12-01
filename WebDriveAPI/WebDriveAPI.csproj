@@ -173,6 +173,10 @@
       <Project>{80173025-2e2f-46b5-a7a3-02e43476bafc}</Project>
       <Name>DropBoxAPI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DropBoxStyle\DropBoxStyle.csproj">
+      <Project>{6f043a85-c484-4b1b-ac2e-045e9eef1281}</Project>
+      <Name>DropBoxStyle</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

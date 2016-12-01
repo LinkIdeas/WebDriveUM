@@ -101,10 +101,11 @@ namespace WebDriveAPI
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        private  void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string user = await tmp.GetUserInfo();
-            MessageBox.Show(user);
+            //     string user = await tmp.GetUserInfo();
+            //  MessageBox.Show(user);
+            this.pop.IsOpen = true;
         }
 
     }
