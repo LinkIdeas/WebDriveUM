@@ -105,7 +105,15 @@
         <TextBlock x:Name="tbl_msg" HorizontalAlignment="Left" Margin="427.2,63.094,0,0" TextWrapping="Wrap" Text="{Binding OperateMsg,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="16" Width="115" Grid.Column="1" Grid.Row="1"/>
         <Button Content="用户信息" Name="btn_userinfo" HorizontalAlignment="Right"  VerticalAlignment="Center" Click="Button_Click_1" Grid.Column="1" Style="{DynamicResource Button_UserInfo}"/>
         <Popup Name="pop" Grid.Column="1" Placement="Bottom" IsOpen="False" PopupAnimation="None" StaysOpen="False" Width="100" Height="100" PlacementTarget="{Binding ElementName=btn_userinfo}">
-            <Button Content="hh"></Button>
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <Border />
+                    <TextBlock Text="用户名"></TextBlock>
+                </Grid>
+                <TextBlock Text="用户邮箱"></TextBlock>
+                <TextBlock Text="网盘容量及使用情况"></TextBlock>
+                <ProgressBar  />
+            </StackPanel>
         </Popup>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.Row="3">
             <DataGrid x:Name="lv_filelist" HorizontalAlignment="Stretch" MinWidth="800" ItemsSource="{Binding CurrentFileListView,IsAsync=True}" AutoGenerateColumns="False" IsReadOnly="True" >

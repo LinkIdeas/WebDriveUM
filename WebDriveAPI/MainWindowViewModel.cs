@@ -1,7 +1,7 @@
 ﻿using DriveAPI.Core;
 using DropBoxAPI;
-using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.ViewModel;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -15,10 +15,10 @@ using System.Windows.Input;
 
 namespace WebDriveAPI
 {
-    class MainWindowViewModel : NotificationObject
+    class MainWindowViewModel : ViewModelBase
     {
 
-        private IBaseDriveService DriveAPICurrentCase { get; set; }
+        private DropBoxManagement DriveAPICurrentCase { get; set; }
 
         private IList<string> LastPathList = new List<string>();
         private bool isgobackpath = false;
@@ -177,45 +177,45 @@ namespace WebDriveAPI
 
         public MainWindowViewModel()
         {
-            AddConnectionBoxCommand = new DelegateCommand(AddConnectionBox);
+            AddConnectionBoxCommand = new RelayCommand(AddConnectionBox);
 
-            LastFolderCommand = new DelegateCommand(LastFolder);
-            NextFolderCommand = new DelegateCommand(NextFolder);
+            LastFolderCommand = new RelayCommand(LastFolder);
+            NextFolderCommand = new RelayCommand(NextFolder);
 
-            GoRootFolderCommand = new DelegateCommand(GoRootFolder);
-            ListItemOpenCommand = new DelegateCommand(ListItemOpen);
-            UploadFileCommand = new DelegateCommand(UpLoadFile);
-            DownloadFileCommand = new DelegateCommand(DownLoadFile);
-            NewFolderCommand = new DelegateCommand(NewFolder);
-            DeleteFileCommand = new DelegateCommand(DeleteFile);
+            GoRootFolderCommand = new RelayCommand(GoRootFolder);
+            ListItemOpenCommand = new RelayCommand(ListItemOpen);
+            UploadFileCommand = new RelayCommand(UpLoadFile);
+            DownloadFileCommand = new RelayCommand(DownLoadFile);
+            NewFolderCommand = new RelayCommand(NewFolder);
+            DeleteFileCommand = new RelayCommand(DeleteFile);
 
-            SearchFileCommand = new DelegateCommand(SearchFile);
+            SearchFileCommand = new RelayCommand(SearchFile);
         }
 
         #region 命令实现
         /// <summary>
         /// 添加新网盘链接
         /// </summary>
-        private async void AddConnectionBox()
+        private  void AddConnectionBox()
         {
             try
             {
                 DriveAPICurrentCase = new DropBoxManagement();
 
-                if (WebBrowserRequest != null)
-                {
-                    DriveAPICurrentCase.CurrentAuthoRequestUri = await DriveAPICurrentCase.GetAuthRequestUrl();
-                    CancelEventArgs e = new CancelEventArgs();
-                    WebBrowserRequest(DriveAPICurrentCase, e);
-                    if (!e.Cancel)
-                    {
-                        await DriveAPICurrentCase.RefreshToken();
-                        OperateMsg = "连接成功";
-                        CurrentFolderPath = "/";
-                        var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
-                        CurrentWebFileList = list;
-                    }
-                }
+                //if (WebBrowserRequest != null)
+                //{
+                //    DriveAPICurrentCase.CurrentAuthoRequestUri = await DriveAPICurrentCase.GetAuthRequestUrl();
+                //    CancelEventArgs e = new CancelEventArgs();
+                //    WebBrowserRequest(DriveAPICurrentCase, e);
+                //    if (!e.Cancel)
+                //    {
+                //        await DriveAPICurrentCase.RefreshToken();
+                //        OperateMsg = "连接成功";
+                //        CurrentFolderPath = "/";
+                //        var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
+                //        CurrentWebFileList = list;
+                //    }
+                //}
             }
             catch
             {
@@ -225,59 +225,59 @@ namespace WebDriveAPI
         /// <summary>
         /// 上一个文件夹
         /// </summary>
-        private async void LastFolder()
+        private  void LastFolder()
         {
-            if (LastPathList.Count > 0)
-            {
-                isgobackpath = true;
-                CurrentFolderPath = LastPathList.Last();
+            //if (LastPathList.Count > 0)
+            //{
+            //    isgobackpath = true;
+            //    CurrentFolderPath = LastPathList.Last();
 
-                var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
-                CurrentWebFileList = list;
-            }
+            //    var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
+            //    CurrentWebFileList = list;
+            //}
         }
 
         /// <summary>
         /// 下一个文件夹
         /// </summary>
-        private async void NextFolder()
+        private  void NextFolder()
         {
-            if (NextPathList.Count > 0)
-            {
-                isgoforwardpath = true;
-                CurrentFolderPath = NextPathList.Last();
+            //if (NextPathList.Count > 0)
+            //{
+            //    isgoforwardpath = true;
+            //    CurrentFolderPath = NextPathList.Last();
 
-                var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
-                CurrentWebFileList = list;
-            }
+            //    var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
+            //    CurrentWebFileList = list;
+            //}
         }
 
         /// <summary>
         /// 返回根目录
         /// </summary>
-        private async void GoRootFolder()
+        private  void GoRootFolder()
         {
             try
             {
-                var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
-                CurrentWebFileList = list;
-                CurrentFolderPath = "/";
-                //Button tmpc = new Button();
-                //tmpc.Content = "Dropbox";
+                //var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
+                //CurrentWebFileList = list;
+                //CurrentFolderPath = "/";
+                ////Button tmpc = new Button();
+                ////tmpc.Content = "Dropbox";
 
-                //CheckBox sssssss = new CheckBox();
-                //Popup p = new Popup();
-                //Binding bingding = new Binding();
-                //bingding.ElementName = sssssss.Name;
-                //bingding.Path = new PropertyPath(sssssss.IsChecked);
-                //BindingOperations.SetBinding(p, Popup.IsOpenProperty, bingding);
-                //p.PlacementTarget = sssssss;
-                //ListBox sss = new ListBox();
-                //p.Child = sss;
-                //sss.ItemsSource = list;
-                //this.lb_path.Items.Add(tmpc);
-                //this.lb_path.Items.Add(sssssss);
-                //this.lb_path.Items.Add(p);
+                ////CheckBox sssssss = new CheckBox();
+                ////Popup p = new Popup();
+                ////Binding bingding = new Binding();
+                ////bingding.ElementName = sssssss.Name;
+                ////bingding.Path = new PropertyPath(sssssss.IsChecked);
+                ////BindingOperations.SetBinding(p, Popup.IsOpenProperty, bingding);
+                ////p.PlacementTarget = sssssss;
+                ////ListBox sss = new ListBox();
+                ////p.Child = sss;
+                ////sss.ItemsSource = list;
+                ////this.lb_path.Items.Add(tmpc);
+                ////this.lb_path.Items.Add(sssssss);
+                ////this.lb_path.Items.Add(p);
             }
             catch
             {
@@ -287,138 +287,138 @@ namespace WebDriveAPI
         /// <summary>
         /// 列表目录打开下一层
         /// </summary>
-        private async void ListItemOpen()
+        private  void ListItemOpen()
         {
-            if (CurrentFileListView != null && CurrentFileListView.CurrentItem != null)
-            {
-                WebFile webfile = CurrentFileListView.CurrentItem as WebFile;
-                if (webfile.IsDir)
-                {
-                    var list = await DriveAPICurrentCase.GetFileList(webfile.FilePath);
-                    CurrentWebFileList = list;
-                    CurrentFolderPath = webfile.FilePath;
-                }
-            }
+            //if (CurrentFileListView != null && CurrentFileListView.CurrentItem != null)
+            //{
+            //    WebFile webfile = CurrentFileListView.CurrentItem as WebFile;
+            //    if (webfile.IsDir)
+            //    {
+            //        var list = await DriveAPICurrentCase.GetFileList(webfile.FilePath);
+            //        CurrentWebFileList = list;
+            //        CurrentFolderPath = webfile.FilePath;
+            //    }
+            //}
         }
 
         /// <summary>
         /// 上传文件
         /// </summary>
-        private async void UpLoadFile()
+        private  void UpLoadFile()
         {
-            try
-            {
-                OpenFileDialog dia = new OpenFileDialog();
-                dia.Multiselect = false;
-                if (dia.ShowDialog() == true)
-                {
-                    var ss = await DriveAPICurrentCase.UploadFile(CurrentFolderPath, dia.FileName);
-                    var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
-                    CurrentWebFileList = list;
-                    OperateMsg = "上传成功";
-                }
-            }
-            catch (Exception ex)
-            {
-            }
+            //try
+            //{
+            //    OpenFileDialog dia = new OpenFileDialog();
+            //    dia.Multiselect = false;
+            //    if (dia.ShowDialog() == true)
+            //    {
+            //        var ss = await DriveAPICurrentCase.UploadFile(CurrentFolderPath, dia.FileName);
+            //        var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
+            //        CurrentWebFileList = list;
+            //        OperateMsg = "上传成功";
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //}
         }
 
         /// <summary>
         /// 下载文件
         /// </summary>
-        private async void DownLoadFile()
+        private  void DownLoadFile()
         {
-            try
-            {
-                if (CurrentFileListView != null && CurrentFileListView.CurrentItem != null)
-                {
-                    WebFile webfile = CurrentFileListView.CurrentItem as WebFile;
-                    if (!webfile.IsDir)
-                    {
-                        FileInfo sss = new FileInfo(webfile.FileName);
-                        string filetype = sss.Extension;
+            //try
+            //{
+            //    if (CurrentFileListView != null && CurrentFileListView.CurrentItem != null)
+            //    {
+            //        WebFile webfile = CurrentFileListView.CurrentItem as WebFile;
+            //        if (!webfile.IsDir)
+            //        {
+            //            FileInfo sss = new FileInfo(webfile.FileName);
+            //            string filetype = sss.Extension;
 
-                        SaveFileDialog sfd = new SaveFileDialog();
-                        sfd.Filter = string.Format("*{0}|Choose File(*{0})|*.*|All Files(*.*)", filetype);
-                        sfd.FileName = webfile.FileName;
-                        if (sfd.ShowDialog() ?? false)
-                        {
-                            await DriveAPICurrentCase.DownLoadFile(webfile.FilePath, sfd.FileName);
-                            OperateMsg = "下载成功";
-                        }
-                    }
-                }
-            }
-            catch
-            {
+            //            SaveFileDialog sfd = new SaveFileDialog();
+            //            sfd.Filter = string.Format("*{0}|Choose File(*{0})|*.*|All Files(*.*)", filetype);
+            //            sfd.FileName = webfile.FileName;
+            //            if (sfd.ShowDialog() ?? false)
+            //            {
+            //                await DriveAPICurrentCase.DownLoadFile(webfile.FilePath, sfd.FileName);
+            //                OperateMsg = "下载成功";
+            //            }
+            //        }
+            //    }
+            //}
+            //catch
+            //{
 
-            }
+            //}
         }
 
         /// <summary>
         /// 新建文件夹
         /// </summary>
-        private async void NewFolder()
+        private  void NewFolder()
         {
-            try
-            {
-                var query = from c in CurrentWebFileList where c.FileName.Contains("新建文件夹") && c.IsDir select c.FileName;
-                string newfoldername = "新建文件夹";
-                string folderformat = newfoldername + "{0}";
-                int index = 1;
-                if (query != null && query.Count() > 0)
-                {
-                    while (true)
-                    {
-                        if (!query.Contains(newfoldername))
-                        {
-                            break;
-                        }
-                        newfoldername = string.Format(folderformat, index);
-                        index++;
-                    }
-                }
-                await DriveAPICurrentCase.CreateFolder(CurrentFolderPath, newfoldername);
-                var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
-                CurrentWebFileList = list;
-                OperateMsg = "新建文件夹成功";
-            }
-            catch
-            { }
+            //try
+            //{
+            //    var query = from c in CurrentWebFileList where c.FileName.Contains("新建文件夹") && c.IsDir select c.FileName;
+            //    string newfoldername = "新建文件夹";
+            //    string folderformat = newfoldername + "{0}";
+            //    int index = 1;
+            //    if (query != null && query.Count() > 0)
+            //    {
+            //        while (true)
+            //        {
+            //            if (!query.Contains(newfoldername))
+            //            {
+            //                break;
+            //            }
+            //            newfoldername = string.Format(folderformat, index);
+            //            index++;
+            //        }
+            //    }
+            //    await DriveAPICurrentCase.CreateFolder(CurrentFolderPath, newfoldername);
+            //    var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
+            //    CurrentWebFileList = list;
+            //    OperateMsg = "新建文件夹成功";
+            //}
+            //catch
+            //{ }
         }
 
         /// <summary>
         /// 删除文件
         /// </summary>
-        private async void DeleteFile()
+        private  void DeleteFile()
         {
-            try
-            {
-                if (CurrentFileListView != null && CurrentFileListView.CurrentItem != null)
-                {
+            //try
+            //{
+            //    if (CurrentFileListView != null && CurrentFileListView.CurrentItem != null)
+            //    {
 
-                    WebFile webfile = CurrentFileListView.CurrentItem as WebFile;
-                    await DriveAPICurrentCase.DeleteFile(webfile.FilePath);
-                    var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
-                    CurrentWebFileList = list;
-                    OperateMsg = "删除完成";
-                }
-            }
-            catch
-            {
-            }
+            //        WebFile webfile = CurrentFileListView.CurrentItem as WebFile;
+            //        await DriveAPICurrentCase.DeleteFile(webfile.FilePath);
+            //        var list = await DriveAPICurrentCase.GetFileList(CurrentFolderPath);
+            //        CurrentWebFileList = list;
+            //        OperateMsg = "删除完成";
+            //    }
+            //}
+            //catch
+            //{
+            //}
         }
 
-        private async void SearchFile()
+        private  void SearchFile()
         {
-            try
-            {
-                CurrentWebFileList = await DriveAPICurrentCase.SearchFiles(SearchFilter);
-                OperateMsg = "搜索完成";
-            }
-            catch
-            {
-            }
+            //try
+            //{
+            //    CurrentWebFileList = await DriveAPICurrentCase.SearchFiles(SearchFilter);
+            //    OperateMsg = "搜索完成";
+            //}
+            //catch
+            //{
+            //}
         }
         #endregion
 
