@@ -1,5 +1,5 @@
 ﻿using DriveAPI.Core;
-using DropBoxAPI;
+using DropBoxManager;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Microsoft.Win32;
@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 
-namespace WebDriveAPI
+namespace WebDriveUM
 {
     class MainWindowViewModel : ViewModelBase
     {

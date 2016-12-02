@@ -7,8 +7,8 @@
     <ProjectGuid>{80173025-2E2F-46B5-A7A3-02E43476BAFC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DropBoxAPI</RootNamespace>
-    <AssemblyName>DropBoxAPI</AssemblyName>
+    <RootNamespace>DropBoxManager</RootNamespace>
+    <AssemblyName>DropBoxManager</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

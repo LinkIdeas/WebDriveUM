@@ -1,4 +1,4 @@
-﻿using DropBoxAPI;
+﻿using DropBoxManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,7 @@ using Microsoft.Win32;
 using DriveAPI.Core;
 using System.Windows.Controls.Primitives;
 
-namespace WebDriveAPI
+namespace WebDriveUM
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
