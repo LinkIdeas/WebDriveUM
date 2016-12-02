@@ -1,7 +1,7 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" xmlns:Core="clr-namespace:DriveAPI.Core;assembly=DriveAPI.Core" x:Class="WebDriveAPI.MainWindow"
+        xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" xmlns:Core="clr-namespace:DriveAPI.Core;assembly=DriveAPI.Core" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="WebDriveAPI.MainWindow"
         Title="MainWindow" Height="737" Width="1337" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <DataTemplate x:Key="DataTemplate1">
@@ -83,63 +83,88 @@
             <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
         </ItemsPanelTemplate>
     </Window.Resources>
-    <Grid Margin="50,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="482*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <GridSplitter Width="5" Grid.RowSpan="4" Grid.ColumnSpan="2" Margin="0,0,893.4,0.2"/>
-
-        <Grid Grid.Row="1" HorizontalAlignment="Left" Grid.RowSpan="2" Grid.Column="1">
-            <TextBlock>名称或目录路径</TextBlock>
-            <ListBox Name="lb_path" HorizontalAlignment="Left" Height="30"  VerticalAlignment="Top" Width="10" ItemsPanel="{DynamicResource ItemsPanelTemplate1}"/>
-        </Grid>
-
-        <Button Content="添加网盘连接" HorizontalAlignment="Left" Margin="120,31.094,0,0" VerticalAlignment="Top" Width="76" Command="{Binding AddConnectionBoxCommand}" Height="19" Grid.Row="1"/>
-        <TextBlock x:Name="tbl_msg" HorizontalAlignment="Left" Margin="427.2,63.094,0,0" TextWrapping="Wrap" Text="{Binding OperateMsg,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="16" Width="115" Grid.Column="1" Grid.Row="1"/>
-        <Button Content="用户信息" Name="btn_userinfo" HorizontalAlignment="Right"  VerticalAlignment="Center" Click="Button_Click_1" Grid.Column="1" Style="{DynamicResource Button_UserInfo}"/>
-        <Popup Name="pop" Grid.Column="1" Placement="Bottom" IsOpen="False" PopupAnimation="None" StaysOpen="False" Width="100" Height="100" PlacementTarget="{Binding ElementName=btn_userinfo}">
-            <StackPanel Orientation="Vertical">
-                <Grid>
-                    <Border />
-                    <TextBlock Text="用户名"></TextBlock>
-                </Grid>
-                <TextBlock Text="用户邮箱"></TextBlock>
-                <TextBlock Text="网盘容量及使用情况"></TextBlock>
-                <ProgressBar  />
+    <Border>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="482*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="logopanel" Grid.RowSpan="2">
+                <Border BorderBrush="Black" BorderThickness="1" Background="#19D4C4C4"/>
+            </Grid>
+            <StackPanel x:Name="userinfopanel" Grid.Column="1" Orientation="Horizontal" d:LayoutOverrides="Width" HorizontalAlignment="Right">
+                <Button Content="用户信息" x:Name="btn_userinfo" Click="Button_Click_1" Style="{DynamicResource Button_UserInfo}"/>
+                <Popup x:Name="pop" Placement="Bottom" IsOpen="False" PopupAnimation="None" StaysOpen="False" PlacementTarget="{Binding ElementName=btn_userinfo}" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition">
+                    <StackPanel Orientation="Vertical" Background="#FFEA9696">
+                        <Grid>
+                            <Border />
+                            <TextBlock Text="用户名"/>
+                        </Grid>
+                        <TextBlock Text="用户邮箱"/>
+                        <TextBlock Text="网盘容量及使用情况"/>
+                        <ProgressBar  />
+                    </StackPanel>
+                </Popup>
             </StackPanel>
-        </Popup>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.Row="3">
-            <DataGrid x:Name="lv_filelist" HorizontalAlignment="Stretch" MinWidth="800" ItemsSource="{Binding CurrentFileListView,IsAsync=True}" AutoGenerateColumns="False" IsReadOnly="True" >
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="文件名" Binding="{Binding FileName}" Width="*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="文件路径" Binding="{Binding FilePath}" Width="*"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </ScrollViewer>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Grid.Row="3" >
-            <Button Content="文件" ></Button>
-        </StackPanel>
-        <StackPanel Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" >
-            <Button Content="上传" Command="{Binding UploadFileCommand}"/>
-            <Button Content="下载" Command="{Binding DownloadFileCommand}"/>
-            <Button Content="新建文件夹" Command="{Binding NewFolderCommand}"/>
-            <Button Content="删除" Command="{Binding DeleteFileCommand}"/>
-            <DockPanel Width="250">
-                <TextBox Height="45" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding SearchFilter,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" >
+            <DockPanel x:Name="toolbarpanel" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
 
-                </TextBox>
-                <Button Content="搜索" HorizontalAlignment="Right" Command="{Binding SearchFileCommand}"/>
+                <StackPanel d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock d:LayoutOverrides="LeftPosition, RightPosition"><Run Text="名称或目录路径"/></TextBlock>
+                    <ListBox x:Name="lb_path" Width="10" ItemsPanel="{DynamicResource ItemsPanelTemplate1}" d:LayoutOverrides="TopPosition, BottomPosition"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="下载" Command="{Binding DownloadFileCommand}"/>
+                    <Button Content="删除" Command="{Binding DeleteFileCommand}"/>
+                    <Button Content="移动"></Button>
+                    <Button Content="复制"></Button>
+                    <Button Content="重命名"></Button>
+                </StackPanel>
+                <StackPanel  Orientation="Horizontal" VerticalAlignment="Center" DockPanel.Dock="Right" HorizontalAlignment="Right" >
+                    <Button Content="新建文件夹" Command="{Binding NewFolderCommand}"/>
+                    <Button Content="上传[文件/文件夹]" Command="{Binding UploadFileCommand}"/>
+                    <DockPanel Width="250">
+                        <TextBox Height="45" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding SearchFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="搜索" HorizontalAlignment="Right" Command="{Binding SearchFileCommand}"/>
+                    </DockPanel>
+
+                </StackPanel>
+
+
             </DockPanel>
+            <Grid x:Name="navigationpanel" Grid.Row="2" Margin="0,0,5,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="77*"/>
+                    <RowDefinition Height="521*"/>
+                </Grid.RowDefinitions>
 
-        </StackPanel>
+                <Button Content="添加网盘连接" HorizontalAlignment="Center" VerticalAlignment="Center" Width="76" Command="{Binding AddConnectionBoxCommand}" Height="19"/>
+                <StackPanel Orientation="Vertical" Grid.Row="1" >
+                    <Button Content="文件" />
+                </StackPanel>
 
 
-    </Grid>
+            </Grid>
+            <GridSplitter Width="5" Grid.Row="2"/>
+            <ScrollViewer x:Name="itemspanel" VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.Row="3">
+                <DataGrid x:Name="lv_filelist" HorizontalAlignment="Stretch" MinWidth="800" ItemsSource="{Binding CurrentFileListView, IsAsync=True}" AutoGenerateColumns="False" IsReadOnly="True" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="文件名" Binding="{Binding FileName}" Width="*"/>
+                        <DataGridTextColumn Header="文件路径" Binding="{Binding FilePath}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+            <Border x:Name="maskpanel" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#7FE0C9C9" Visibility="Collapsed">
+                <TextBlock x:Name="tbl_msg" TextWrapping="Wrap" Text="{Binding OperateMsg, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+            </Border>
+
+
+        </Grid>
+    </Border>
 </Window>
