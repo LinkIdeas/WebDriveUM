@@ -167,9 +167,9 @@
       <Project>{c013e18b-2b0b-47cc-b7e2-6df683b75578}</Project>
       <Name>DriveAPI.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DropBoxAPI\DropBoxAPI.csproj">
+    <ProjectReference Include="..\DropBoxManager\DropBoxManager.csproj">
       <Project>{80173025-2e2f-46b5-a7a3-02e43476bafc}</Project>
-      <Name>DropBoxAPI</Name>
+      <Name>DropBoxManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\DropBoxStyle\DropBoxStyle.csproj">
       <Project>{6f043a85-c484-4b1b-ac2e-045e9eef1281}</Project>
