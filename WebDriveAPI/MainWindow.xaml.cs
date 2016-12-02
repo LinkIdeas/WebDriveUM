@@ -55,21 +55,21 @@ namespace WebDriveAPI
         {
             if (sender != null)
             {
-                IBaseDriveService tempservice = sender as IBaseDriveService;
+                //IBaseDriveService tempservice = sender as IBaseDriveService;
 
-                var authRequestUrl = tempservice.CurrentAuthoRequestUri;
+                //var authRequestUrl = tempservice.CurrentAuthoRequestUri;
 
-                WindowLoginAndAccess win = new WindowLoginAndAccess();
-                win.LoginUrl = authRequestUrl;
-                win.DriveID = "dropbox";
-                if (win.ShowDialog() ?? false)
-                {
-                    tempservice.Code = win.Code;
-                }
-                else
-                {
-                    e.Cancel = true;
-                }
+                //WindowLoginAndAccess win = new WindowLoginAndAccess();
+                //win.LoginUrl = authRequestUrl;
+                //win.DriveID = "dropbox";
+                //if (win.ShowDialog() ?? false)
+                //{
+                //    tempservice.Code = win.Code;
+                //}
+                //else
+                //{
+                //    e.Cancel = true;
+                //}
             }
         }
 

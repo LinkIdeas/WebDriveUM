@@ -138,8 +138,8 @@
             </DockPanel>
             <Grid x:Name="navigationpanel" Grid.Row="2" Margin="0,0,5,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="77*"/>
-                    <RowDefinition Height="521*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <Button Content="添加网盘连接" HorizontalAlignment="Center" VerticalAlignment="Center" Width="76" Command="{Binding AddConnectionBoxCommand}" Height="19"/>
