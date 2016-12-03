@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseDriveService.cs" />
+    <Compile Include="UserInfo.cs" />
     <Compile Include="WebFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

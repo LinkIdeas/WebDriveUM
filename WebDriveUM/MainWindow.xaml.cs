@@ -25,6 +25,9 @@ using System.IO;
 using Microsoft.Win32;
 using DriveAPI.Core;
 using System.Windows.Controls.Primitives;
+using GalaSoft.MvvmLight.Messaging;
+using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition;
 
 namespace WebDriveUM
 {
@@ -33,22 +36,36 @@ namespace WebDriveUM
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        MainWindowViewModel ViewModel
-        {
-            get { return this.DataContext as MainWindowViewModel; }
-            set { this.DataContext = value; }
-        }
+      
+        //MainWindowViewModel ViewModel
+        //{
+        //    get { return this.DataContext as MainWindowViewModel; }
+        //    set { this.DataContext = value; }
+        //}
 
 
         string currentpath = "/";
         public MainWindow()
         {
             InitializeComponent();
-            ViewModel = new MainWindowViewModel();
-            ViewModel.WebBrowserRequest += ViewModel_WebBrowserRequest;
+            //   ViewModel = new MainWindowViewModel();
+            //    ViewModel.WebBrowserRequest += ViewModel_WebBrowserRequest;
 
             this.lv_filelist.PreviewMouseDoubleClick += lv_filelist_PreviewMouseDoubleClick;
+
+            Messenger.Default.Register<NotificationMessageWithCallback>("Auth", "GetAuth", g);
+
+
+
+        }
+
+        void g(NotificationMessageWithCallback no)
+        {
+            WindowLoginAndAccess win = new WebDriveUM.WindowLoginAndAccess();
+            win.LoginUrl = new Uri(no.Notification);
+            win.ShowDialog();
+
+            no.Execute(win.LastUrl.ToString());
         }
 
         void ViewModel_WebBrowserRequest(object sender, System.ComponentModel.CancelEventArgs e)
@@ -89,18 +106,18 @@ namespace WebDriveUM
                 //    this.lv_filelist.ItemsSource = list;
                 //    this.currentpath = webfile.FilePath;
                 //}
-                ViewModel.ListItemOpenCommand.Execute(null);
+                //   ViewModel.ListItemOpenCommand.Execute(null);
             }
         }
 
-        DropBoxManagement tmp;
+        //    DropBoxManagement tmp;
 
         /// <summary>
         /// 获取用户信息
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private  void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             //     string user = await tmp.GetUserInfo();
             //  MessageBox.Show(user);

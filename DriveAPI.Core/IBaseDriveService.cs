@@ -8,7 +8,7 @@ namespace DriveAPI.Core
 {
     public interface IBaseDriveService
     {
-
+        
         ///// <summary>
         ///// 权限申请地址
         ///// </summary>
@@ -30,6 +30,10 @@ namespace DriveAPI.Core
         /// <returns></returns>
         Uri GetAuthPageAddress();
 
+        void SetAccessToken(Uri result);
+
+        UserInfo GetUserInfo();
+        Task<UserInfo> GetUserInfoAsync();
 
         ///// <summary>
         ///// 刷新授权代码
@@ -81,4 +85,5 @@ namespace DriveAPI.Core
         //Task<IList<WebFile>> SearchFiles(string filename);
 
     }
+
 }

@@ -83,6 +83,9 @@
             <VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal"/>
         </ItemsPanelTemplate>
     </Window.Resources>
+    <Window.DataContext>
+        <Binding Path="Main" Source="{StaticResource Locator}"></Binding>
+    </Window.DataContext>
     <Border>
         <Grid >
             <Grid.RowDefinitions>
@@ -98,7 +101,7 @@
                 <Border BorderBrush="Black" BorderThickness="1" Background="#19D4C4C4"/>
             </Grid>
             <StackPanel x:Name="userinfopanel" Grid.Column="1" Orientation="Horizontal" d:LayoutOverrides="Width" HorizontalAlignment="Right">
-                <Button Content="用户信息" x:Name="btn_userinfo" Click="Button_Click_1" Style="{DynamicResource Button_UserInfo}"/>
+                <Button Content="{Binding User.Name}" x:Name="btn_userinfo" Click="Button_Click_1" Style="{DynamicResource Button_UserInfo}"/>
                 <Popup x:Name="pop" Placement="Bottom" IsOpen="False" PopupAnimation="None" StaysOpen="False" PlacementTarget="{Binding ElementName=btn_userinfo}" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition">
                     <StackPanel Orientation="Vertical" Background="#FFEA9696">
                         <Grid>

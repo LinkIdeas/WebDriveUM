@@ -1,17 +1,23 @@
 ﻿using DeveloperKeyInfo;
 using DriveAPI.Core;
+using Dropbox.Api;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DropBoxManager
 {
-    public class DropBoxManagement 
+    [Export("DropBox", typeof(IBaseDriveService))]
+    public class DropBoxManagement : IBaseDriveService
     {
+        private string AccessToken;
+
         /// <summary>
         /// 权限申请地址
         /// </summary>
@@ -34,6 +40,43 @@ namespace DropBoxManager
             //Option.RedirectUri = "https://www.canself.com";
 
             //TmpClient = new Client(Option);
+        }
+
+        public Task<Uri> GetAuthPageAddressAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Uri GetAuthPageAddress()
+        {
+            return DropboxOAuth2Helper.GetAuthorizeUri(OAuthResponseType.Token, LocalKey.Dropbox_AppKey, "https://www.canself.com", state: Guid.NewGuid().ToString("N"));
+        }
+
+        public void SetAccessToken(Uri result)
+        {
+            OAuth2Response result1 = DropboxOAuth2Helper.ParseTokenFragment(result);
+            this.AccessToken = result1.AccessToken;
+        }
+
+        public UserInfo GetUserInfo()
+        {
+            throw new NotImplementedException();
+
+        }
+
+        HttpClient client = new HttpClient();
+
+        public async Task<UserInfo> GetUserInfoAsync()
+        {
+            UserInfo user = new UserInfo();
+            var config = new DropboxClientConfig() { HttpClient = client };
+            using (var dbx = new DropboxClient(AccessToken, config))
+            {
+                var full = await dbx.Users.GetCurrentAccountAsync();
+                user.Email = full.Email;
+                user.Name = full.Name.DisplayName;
+            }
+            return user;
         }
 
         //public async Task RefreshToken()

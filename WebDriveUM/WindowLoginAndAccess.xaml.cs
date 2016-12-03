@@ -30,6 +30,8 @@ namespace WebDriveUM
 
         public string DriveID { get; set; }
 
+        public Uri LastUrl { get; set; }
+
 
         public WindowLoginAndAccess()
         {
@@ -47,23 +49,26 @@ namespace WebDriveUM
 
         void wb_login_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (e != null && e.Uri != null && e.Uri.ToString().StartsWith("http://www.canself.com"))
-            {
-                Code = HttpUtility.ParseQueryString(e.Uri.Query).Get("code");
-                this.DialogResult = true;
-                this.Close();
-            }
+            //if (e != null && e.Uri != null && e.Uri.ToString().StartsWith("http://www.canself.com"))
+            //{
+            //    Code = HttpUtility.ParseQueryString(e.Uri.Query).Get("code");
+            //    this.DialogResult = true;
+            //    this.Close();
+            //}
         }
 
         void wb_login_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
             if (e != null && e.Uri != null)
             {
-               // MessageBox.Show(e.Uri.ToString());
+                // MessageBox.Show(e.Uri.ToString());
+
             }
             if (e != null && e.Uri != null && e.Uri.ToString().StartsWith("https://www.canself.com"))
             {
-                (sender as WebBrowser).Navigate(e.Uri.ToString().Replace("https", "http"));
+                //  (sender as WebBrowser).Navigate(e.Uri.ToString().Replace("https", "http"));
+                LastUrl = e.Uri;
+                this.Close();
             }
         }
     }

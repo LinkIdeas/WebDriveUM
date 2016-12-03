@@ -4,6 +4,5 @@
         Title="登陆授权" Height="400" Width="500" WindowStartupLocation="CenterScreen">
     <Grid>
         <WebBrowser Name="wb_login"/>
-
     </Grid>
 </Window>
