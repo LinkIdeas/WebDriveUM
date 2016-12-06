@@ -24,7 +24,6 @@ namespace WebDriveUM.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private CompositionContainer _container;
 
         [Import("DropBox", typeof(IBaseDriveService))]
         IBaseDriveService Dropbox { get; set; }
@@ -48,28 +47,6 @@ namespace WebDriveUM.ViewModel
             AddConnectionBoxCommand = new RelayCommand(AddConnectionBox);
 
 
-
-
-            //An aggregate catalog that combines multiple catalogs
-            var catalog = new AggregateCatalog();
-            //Adds all the parts found in the same assembly as the Program class
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(App).Assembly));
-            //catalog.Catalogs.Add(new DirectoryCatalog(@"E:\MyDownloads\Simple Calculator MEF Application\C#\SimpleCalculator3\Extensions"));
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(IBaseDriveService).Assembly));
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(DropBoxManagement).Assembly));
-
-            //Create the CompositionContainer with the parts in the catalog
-            _container = new CompositionContainer(catalog);
-
-            //Fill the imports of this object
-            try
-            {
-                this._container.ComposeParts(this);
-            }
-            catch (CompositionException compositionException)
-            {
-                Console.WriteLine(compositionException.ToString());
-            }
         }
 
         public ICommand AddConnectionBoxCommand { get; set; }
