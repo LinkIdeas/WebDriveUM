@@ -1,4 +1,5 @@
-# WebDriveAPI
+# WebDriveUM
+
 一些网盘的统一管理工具——个人玩玩
 玩网盘
 
@@ -14,3 +15,13 @@
 
 * MVVMLight
 * MEF —— IOC框架
+
+## 基础架构
+
+
+<table cellspacing="2" cellpadding="2" border="1" >
+<tr><td align="center">WPF</td><td align="center">WebAPI??</td></tr>
+<tr><td colspan="2" align="center">File Manager</td></tr>
+<tr><td colspan="2" align="center">Web Drive Adapter</td></tr>
+<tr><td colspan="2" align="center">Web Drive Provider ---- Dropbox,Google Drive...</td></tr>
+</table>
