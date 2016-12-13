@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropBoxManager", "DropBoxMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDriveUM", "WebDriveUM\WebDriveUM.csproj", "{F0B9F938-43AD-49BC-AAA2-9769BDA8990F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Link.Data", "Link.Data\Link.Data.csproj", "{177D6790-BC38-4896-B078-5A8A26F8ACE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F0B9F938-43AD-49BC-AAA2-9769BDA8990F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0B9F938-43AD-49BC-AAA2-9769BDA8990F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0B9F938-43AD-49BC-AAA2-9769BDA8990F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{177D6790-BC38-4896-B078-5A8A26F8ACE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{177D6790-BC38-4896-B078-5A8A26F8ACE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{177D6790-BC38-4896-B078-5A8A26F8ACE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{177D6790-BC38-4896-B078-5A8A26F8ACE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
