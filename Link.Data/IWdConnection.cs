@@ -12,5 +12,20 @@ namespace Link.Data
     /// </summary>
     interface IWdConnection
     {
+        string AccessToken { get; set; }
+
+        /// <summary>
+        /// 【异步】获取授权页面地址
+        /// </summary>
+        /// <returns></returns>
+        Task<Uri> GetAuthPageAddressAsync();
+        /// <summary>
+        /// 获取授权页面地址
+        /// </summary>
+        /// <returns></returns>
+        Uri GetAuthPageAddress();
+
+        void SetAccessToken(Uri result);
+
     }
 }

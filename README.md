@@ -1,7 +1,9 @@
 # WebDriveUM
 
-一些网盘的统一管理工具——个人玩玩
-玩网盘
+* 一些网盘的统一管理工具
+    * 开源项目只考虑官方提供API的网盘
+* 数据备份——数据迁移、备份
+
 
 ## 开发者注意
 
@@ -19,9 +21,22 @@
 ## 基础架构
 
 
-<table cellspacing="2" cellpadding="2" border="1" width="100%" >
+<table cellspacing="2" cellpadding="2" border="1" style="width:100%" >
 <tr><td align="center">WPF</td><td align="center">WebAPI??</td></tr>
 <tr><td colspan="2" align="center">File Manager</td></tr>
 <tr><td colspan="2" align="center">Web Drive Adapter</td></tr>
 <tr><td colspan="2" align="center">Web Drive Provider ---- Dropbox,Google Drive...</td></tr>
 </table>
+
+
+## 当前准备工作
+
+添加阿里云oss管理功能，将相关的配置项保存成配置文件
+
+
+## 公共API
+
+百度网盘：https://pan.baidu.com/union
+DropBox：https://www.dropbox.com/developers
+OneDrive：https://docs.microsoft.com/zh-cn/onedrive/developer/
+Box：https://developer.box.com/
